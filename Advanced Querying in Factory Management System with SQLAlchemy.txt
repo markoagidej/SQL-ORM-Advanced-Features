@@ -1,0 +1,12 @@
+Task 1: Analyze Employee Performance
+*The current state of the db has no relationship between employees, products, and production runs. Below is a theoretical statement*
+SELECT e.name, SUM(pn.quantity_produced) AS employee_production FROM production AS pn LEFT JOIN employees AS e ON e.id = pn.employee_id GROUP BY pn.employee_id;
+
+Task 2: Identify Top Selling Products
+SELECT p.name, product_id, SUM(quantity) AS sold_units FROM orders LEFT JOIN products AS p ON p.id=product_id GROUP BY product_id ORDER BY sold_units DESC;
+
+Task 3: Determine Customer Lifetime Value
+SELECT c.name, SUM(total_price) AS customer_value FROM orders AS o LEFT JOIN customers AS c ON o.customer_id = c.id GROUP BY o.customer_id HAVING customer_value > 1000.00 ORDER BY customer_value DESC;
+
+Task 4: Evaluate Production Efficiency
+SELECT p.name, SUM(pn.quantity_produced) AS total_produced, CURDATE() FROM production AS pn LEFT JOIN products AS p ON pn.product_id=p.id WHERE pn.date_produced = CURDATE() GROUP BY p.name;
