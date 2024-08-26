@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+from sqlalchemy import select
 from database import db
 from models.product import Product
 
@@ -17,3 +18,7 @@ def getAll():
         products = session.query(Product).all()
         print(products)
         return products
+    
+def find_all_pagination(page=1, per_page=1):
+    products = db.paginate(select(Product), page=page, per_page=per_page)
+    return products
