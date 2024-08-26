@@ -1,4 +1,4 @@
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, select
 from database import db
 from models.order import Order
 
@@ -17,3 +17,7 @@ def getAll():
         orders = session.query(Order).all()
         print(orders)
         return orders
+    
+def find_all_pagination(page=1, per_page=1):
+    orders = db.paginate(select(Order), page=page, per_page=per_page)
+    return orders
