@@ -19,3 +19,10 @@ def getAll():
     except ValidationError as err:
         return jsonify(err.messages), 400
     
+
+def get_customers_value_over1000():
+    try:
+        customers = customerService.get_customers_value_over1000()
+        return jsonify(customers), 201
+    except ValidationError as err:
+        return jsonify(err.messages), 400  

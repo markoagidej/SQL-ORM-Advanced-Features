@@ -7,4 +7,4 @@ class Production(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     product_id: Mapped[int] = mapped_column(db.Integer, db.ForeignKey('products.id'), nullable=False)
     quantity_produced: Mapped[int] = mapped_column(db.Integer, nullable=False)
-    date_produced: Mapped[datetime.datetime] = mapped_column(db.Date, nullable=False)
+    date_produced: Mapped[datetime.date] = mapped_column(db.Date, nullable=False)

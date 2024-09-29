@@ -19,3 +19,9 @@ def getAll():
     except ValidationError as err:
         return jsonify(err.messages), 400
     
+def find_production_total():
+    try:
+        productions = productionService.find_production_total()
+        return jsonify(productions), 201
+    except ValidationError as err:
+        return jsonify(err.messages), 400  
